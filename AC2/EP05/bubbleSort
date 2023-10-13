@@ -1,0 +1,41 @@
+.text
+.globl main
+main:
+addi $s0,$zero,0
+addi $t0,$zero,0x1001
+sll $t0,$t0,16
+fori:
+slti $t1,$s0,100
+beq $t1,$zero,fimI
+addi $s1,$zero,0
+forj:
+slti $t2,$s1,99
+beq $t2,$zero,fimj
+sll $t3,$s1,2
+addi $t4,$t3,4
+add $t3,$t0,$t3
+addi $t4,$t3,4
+lw $s3,0($t3)
+lw $s4,0($t4)
+slt $t5,$s4,$s3
+beq $t5,$zero,fimswap
+add $s2,$zero,$s3
+addi $s3,$s4,0
+addi $s4,$s2,0
+sw $s3,0($t3)
+sw $s4,0($t4)
+fimswap:
+addi $s1,$s1,1
+j forj
+fimj:
+addi $s0,$s0,1
+j fori
+fimI:
+
+
+.data
+numbers: .word 23, 54, 12, 87, 32, 65, 10, 42, 76, 98, 56, 34, 21, 78, 43, 89, 67, 45, 76, 30
+         .word 14, 88, 49, 52, 11, 66, 29, 80, 55, 37, 91, 25, 75, 59, 27, 63, 82, 18, 71, 95
+         .word 39, 50, 84, 16, 73, 97, 47, 61, 33, 79, 68, 24, 90, 38, 69, 31, 72, 85, 17, 51
+         .word 74, 28, 58, 83, 46, 94, 36, 60, 81, 22, 64, 92, 48, 70, 26, 93, 57, 35, 96, 40
+         .word 62, 19, 77, 41, 53, 86, 13, 67, 92, 75, 28, 64, 53, 41, 80, 97, 30, 79, 15, 72
